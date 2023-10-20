@@ -15,9 +15,13 @@
         <header>
             <div id="navbar">
                 <img id="logo" src="media/logo.png" alt="Logo">
-                <div class="search-filter" id="search-bar">
-                    <img class="field-icon" src="media/search.png" alt="Search icon">
-                    <p> Search </p>
+                <div class="search-container">
+                    <div class="search">
+                        <input type="text" class="searchTerm" placeholder="Search">
+                        <button type="submit" class="searchButton">
+                            <img class="field-icon" src="media/search_black.png" alt="Search icon">
+                        </button>
+                    </div>
                 </div>
             </div>
             <picture>
@@ -27,9 +31,17 @@
         </header>
 
         <main>
-            <div class="search-filter" id="filter-bar">
+            <!-- <div class="search-filter" id="filter-bar">
                 <p> Filter</p>
                 <img class="field-icon" src="media/down_arrow.png" alt="Drop down">
+            </div> -->
+
+            <div id="filter-bar">
+                <a class="view-button" href=""> Beef </a>
+                <a class="view-button" href=""> Chicken </a>
+                <a class="view-button" href=""> Pork </a>
+                <a class="view-button" href=""> Fish </a>
+                <a class="view-button" href=""> Vegetarian </a>
             </div>
             <h1> All Recipes </h1>
 
