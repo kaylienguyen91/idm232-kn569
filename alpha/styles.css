@@ -1,0 +1,277 @@
+@font-face {
+    font-family: "josefin-bold";
+    src: url('fonts/josefin-sans/JosefinSans-Bold.ttf') format('truetype');
+}
+@font-face {
+    font-family: "nunito-regular";
+    src: url('fonts/nunito/Nunito-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: "nunito-italic";
+    src: url('fonts/nunito/Nunito-Italic.ttf') format('truetype');
+}
+
+:root {
+    --josefin-bold: "josefin-bold";
+    --nunito-italic: "nunito-italic";
+    --nunito-regular: "nunito-regular";
+}
+
+body {
+    margin: 0;
+    font-family: var(--nunito-regular);
+}
+
+header, main {
+    max-width: 1100px;
+}
+
+/* ////////////////////////// */
+/* Main Menu's Header */
+
+#logo {
+    display: block;
+    margin: 1rem auto auto auto;
+    width: 40%;
+}
+
+div.search-container{
+    display: flex;
+    margin: 1.5rem auto auto auto;
+    column-gap: 1rem;
+    align-items: center;
+    width: 60%;
+}
+
+.search {
+    width: 100%;
+    position: relative;
+    display: flex;
+  }
+  
+.searchTerm {
+    width: 100%;
+    border: 2px solid #ffae0b;
+    border-right: none;
+    padding: 5px 10px;
+    height: 20px;
+    border-radius: 2rem 0 0 2rem;
+    outline: none;
+}
+  
+.searchButton {
+    width: 40px;
+    height: 34px;
+    border: 1px solid #ffae0b;
+    background: #ffae0b;
+    color: #fff;
+    border-radius: 0 2rem 2rem 0;
+    cursor: pointer;
+    padding: 7px;
+}
+
+img {
+    width: 100%;
+}
+
+#hero-img {
+    margin: 1rem 0;
+}
+
+.field-icon {
+    width: 100%;
+}
+
+/* ////////////////////////// */
+/* Main Menu's Body */
+
+main {
+    margin: 0 1.5rem;
+    max-width: 1100px;
+}
+
+#filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: .8rem;
+    margin-top: 2rem;
+    justify-content: center;
+}
+
+.view-button {
+    display: inline-block;
+    border: 3px solid #ffae0b;
+    border-radius: 4rem;
+    padding: 0.5rem 1.5rem;
+    margin-top: .5rem;
+    transition: color .2s ease-out 0s,
+    background-color .2s ease-in 0s;
+}
+
+.view-button:hover {
+    background-color: #ffae0b;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1 {
+    font-family: var(--josefin-bold);
+    color: #ffae0b;
+    margin-top: 3rem;
+}
+
+h1, h2, #copyright {
+    text-align: center;
+}
+
+div.main-recipe {
+    cursor: pointer;
+    margin-top: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 0.5rem 0 rgba(0,0,0,.2);
+    position: relative;
+    transition: box-shadow .2s ease 0s;
+}
+
+div.main-recipe:hover {
+    box-shadow: 0 0 1rem 0 rgba(0,0,0,.4);;
+}
+
+img.main-recipe-img {
+    margin: 0;
+    border-radius: 1rem 1rem 0 0;
+}
+
+h2.main-recipe-name {
+    padding: 0.8rem 1rem;
+    margin: 0;
+}
+
+span.recipe-subtitle {
+    font-size: .95rem;
+    font-family: var(--nunito-italic);
+    line-height: 100%;
+    color: #3d9970;
+}
+
+/* /////////////////////// */
+/* Footer */
+
+footer {
+    background-color: #3d9970;
+    margin-top: 3rem;
+    padding: 1rem 0;
+}
+
+#logo-footer {
+    display: block;
+    margin: auto;
+    width: 30%;
+    max-width: 250px;
+}
+
+#copyright {
+    color: white;
+    font-size: .8rem;
+    margin: 1rem auto 0 auto;
+}
+
+@media screen and (min-width: 600px) {
+    main {
+        margin: 0 5rem;
+    }
+    #logo {
+        width: 30%;
+    }
+    #logo-footer {
+        width: 25%;
+    }
+    div.search-container {
+        width: 40%;
+    }
+    h1 {
+        font-size: 2.2rem;
+    }
+    h2 {
+        font-size: 1.7rem;
+    }
+}
+
+@media screen and (min-width: 750px) {
+    main {
+        margin: 0 7rem;
+    }
+    #logo {
+        width: 25%;
+    }
+    #logo-footer {
+        width: 18%;
+    }
+}
+
+@media screen and (min-width: 880px) {
+    main {
+        margin: 0 3rem;
+    }
+    #navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 6rem;
+    }
+    #logo {
+        width: 20%;
+        margin: 0;
+    }
+    div.search-container {
+        margin: 0;
+        width: 25%;
+    }
+    #hero-img {
+        margin-top: 0;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+    #recipe-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 2rem;
+    }
+}
+
+@media screen and (min-width: 1100px) {
+    header {
+        margin: auto;
+    }
+    #hero-img {
+        border-radius: 1rem;
+    }
+    main {
+        margin: 0 6rem;
+    }
+    #navbar {
+        padding: 2rem 6rem;
+    }
+    #logo {
+        width: 15%;
+    }
+    #logo-footer {
+        width: 12%;
+    }
+    h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    main {
+        margin: auto;
+    }
+    #recipe-list {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
