@@ -5,12 +5,13 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="recipe-detail-page/styles.css">
         <!-- <link rel="icon" type="image/x-icon" href="portfolio-assets/logo 32x32.png"> -->
-        <title> NomNomNerd </title>
+        <title> NomNomNerd - Recipe Detail </title>
     </head>
 
-    <body>
+    <body id="recipeDetailPage">
+
         <?php
             // $msg = "HOWDY";
             // echo '<script type="text/javascript">console.log("'. $msg .'");</script>';
@@ -27,107 +28,198 @@
         ?>
 
         <header>
-            <div id="navbar">
-                <img id="logo" src="media/logo.png" alt="Logo">
-                <div class="search-container">
-                    <div class="search">
-                        <input type="text" class="searchTerm" placeholder="Search">
-                        <button type="submit" class="searchButton">
-                            <img class="field-icon" src="media/search_black.png" alt="Search icon">
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <picture>
-                <source media="(min-width: 880px)" srcset="media/food/hero_img.jpg">
-                <img id="hero-img" src="media/food/hero_img_cropped.jpg" alt="Hero image">
-            </picture>
+            <img id="logo" src="media/logo.png" alt="Logo">
+            
+            <h1> 
+                <?php 
+                    $recipe_id = $_GET['id'];  
+                    // if (isset($_GET['id'])) {
+                        // Retrieve recipe data based on ID from the URL
+                        $recipe_id = 10;
+                        $query = "SELECT * FROM Recipes WHERE id = $recipe_id ";
+                        $results = mysqli_query($db_connection, $query);
+                        while ($oneRecipe = mysqli_fetch_array($results)) {
+                            echo $oneRecipe['Title'];
+                        };
+                    // };
+                ?>
+            <br><span class="recipePageSubtitle">
+                <?php 
+                    // if (isset($_GET['id'])) {
+                        // $recipe_id = $_GET['id'];
+                        $query = "SELECT * FROM Recipes WHERE id = $recipe_id ";
+                        $results = mysqli_query($db_connection, $query);
+                        while ($oneRecipe = mysqli_fetch_array($results)) {
+                            echo $oneRecipe['Subtitle'];
+                        };
+                    // };
+                ?>
+            </span> </h1>
+            
         </header>
 
         <main>
-            <!-- <div class="search-filter" id="filter-bar">
-                <p> Filter</p>
-                <img class="field-icon" src="media/down_arrow.png" alt="Drop down">
-            </div> -->
+            <div id="recipeIntro">
+                <!-- <img id="recipeHeroImg" src="media/food/1_chicken.jpg" alt="Hero image"> -->
 
-            <div id="filter-bar">
-                <a class="view-button" href=""> Beef </a>
-                <a class="view-button" href=""> Chicken </a>
-                <a class="view-button" href=""> Pork </a>
-                <a class="view-button" href=""> Fish </a>
-                <a class="view-button" href=""> Vegetarian </a>
-            </div>
-            <h1> All Recipes </h1>
-
-            <div id="recipe-list">
-
-            <?php
-                // Get all the recipes from "recipes" table in the "idm232" database
-                $query = "SELECT * FROM recipes";
-                $results = mysqli_query($db_connection, $query);
-                if ($results->num_rows > 0) {
-                    consoleMsg("Query successful! number of rows: $results->num_rows");
+                <?php
+                //  if (isset($_GET['id'])) {
+                    // $recipe_id = $_GET['id'];
+                    $query = "SELECT * FROM Recipes WHERE id = $recipe_id ";
+                    $results = mysqli_query($db_connection, $query);
                     while ($oneRecipe = mysqli_fetch_array($results)) {
-                    // echo '<h3>' .$oneRecipe['Title']. ' - '  . $oneRecipe['Cal/Serving']  .  '</h3>'; 
-                    $id = $oneRecipe['id'];
-                    echo '<a loading="lazy" class="linktodet" href="recipe-detail-page/index.php?id=' . $oneRecipe['id'] . '" aria-label="make this recipe">';
-                    echo '<div class="main-recipe">';
-                    echo '<img class="main-recipe-img" src="./media/food/' . $oneRecipe['Main IMG'] . '" alt="Dish image">';
-                    echo '<h2 class="main-recipe-name">' . $oneRecipe['Title'] . ' <br><span class="recipe-subtitle">' . $oneRecipe['Subtitle'] . '</span></h2>';
-                    echo '</div>';
-                    echo '</a>';
-                    }
-                }
-            ?>
-                <!-- <div class="main-recipe">
-                    <img class="main-recipe-img" src="media/food/1_chicken.jpg" alt="Ancho-Orange Chicken">
-                    <h2 class="main-recipe-name"> Ancho-Orange Chicken 
-                    <br>
-                    <span class="recipe-subtitle">with Kale Rice & Roasted Carrots</span> 
-                    </h2>                  
-                </div> -->
+                        echo '<img id="recipeHeroImg" src="./media/food/'.$oneRecipe['Main IMG'] . '" " alt="Dish image">';
+                    };
+                // };
+                ?>
 
-                <!-- <div class="main-recipe">
-                    <img class="main-recipe-img" src="media/food/2_beef.jpg" alt="Beef Medallions & Mushroom Sauce">
-                    <h2 class="main-recipe-name"> Beef Medallions & Mushroom Sauce <br><span class="recipe-subtitle">with Mashed Potatoes</span> </h2>                  
-                </div>
+                <div>
+                    <p id="recipeDesc"> 
+                        <?php
+                        //    if (isset($_GET['id'])) {
+                            // $recipe_id = $_GET['id'];
+                            $query = "SELECT * FROM Recipes WHERE id = $recipe_id ";
+                            $results = mysqli_query($db_connection, $query);
+                            while ($oneRecipe = mysqli_fetch_array($results)) {
+                                echo $oneRecipe['Description'];
+                            };
+                        // };
+                        ?>
+                    </p>
 
-                <div class="main-recipe">
-                    <img class="main-recipe-img" src="media/food/3_sandwich.jpg" alt="Broccoli & Basil Pesto Sandwiches">
-                    <h2 class="main-recipe-name"> Broccoli & Basil Pesto Sandwiches <br><span class="recipe-subtitle">with Romaine & Citrus Salad</span> </h2>                  
+                    <div id="recipeOverview">
+                        <p> <strong>Cook Time:</strong><br> 
+                            <?php 
+                            // if (isset($_GET['id'])) {
+                                // $recipe_id = $_GET['id'];
+                                $query = "SELECT * FROM Recipes WHERE id = $recipe_id ";
+                                $results = mysqli_query($db_connection, $query);
+                                while ($oneRecipe = mysqli_fetch_array($results)) {
+                                    echo $oneRecipe['Cook Time'];
+                                };
+                            // };
+                            ?>
+                        </p>
+                        <p> <strong>Servings:</strong><br> 
+                            <?php
+                            //   if (isset($_GET['id'])) {
+                                // $recipe_id = $_GET['id'];
+                                $query = "SELECT * FROM Recipes WHERE id = $recipe_id ";
+                                $results = mysqli_query($db_connection, $query);
+                                while ($oneRecipe = mysqli_fetch_array($results)) {
+                                    echo $oneRecipe['Servings'];
+                                // };
+                            };
+                            ?>
+                        </p>
+                        <p> <strong>Cal/Serving:</strong><br>
+                            <?php 
+                            //  if (isset($_GET['id'])) {
+                                // $recipe_id = $_GET['id'];
+                                $query = "SELECT * FROM Recipes WHERE id = $recipe_id ";
+                                $results = mysqli_query($db_connection, $query);
+                                while ($oneRecipe = mysqli_fetch_array($results)) {
+                                    echo $oneRecipe['Cal/Serving'];
+                                };
+                            // };
+                            ?>
+                        </p>
+                        <p> <strong>Protein:</strong><br>
+                            <?php 
+                            //  if (isset($_GET['id'])) {
+                                // $recipe_id = $_GET['id'];
+                                $query = "SELECT * FROM Recipes WHERE id = $recipe_id ";
+                                $results = mysqli_query($db_connection, $query);
+                                while ($oneRecipe = mysqli_fetch_array($results)) {
+                                    echo $oneRecipe['Proteine'];
+                                };
+                            // };
+                            ?>
+                        </p>
+                    </div>
                 </div>
+            </div>
+            
+            <div>
+                <h2> Ingredients </h2>
+                <div id="ingredients">
+                    
+                    <?php
+                    // if (isset($_GET['id'])) {
+                        // $recipe_id = $_GET['id'];
+                        $query = "SELECT * FROM Recipes WHERE id = $recipe_id ";
+                        $results = mysqli_query($db_connection, $query);
+                        while ($oneRecipe = mysqli_fetch_array($results)) {
+             
+            
+                    function keyExists($oneRecipe, $key) {
+                        return isset($oneRecipe[$key]) && !empty($oneRecipe[$key]);
+                      };
+                    if (keyExists($oneRecipe, 'All Ingredients')) {
+                        $ingredientsArray = explode('*', $oneRecipe['All Ingredients']);
+                    
+                        // Trim each ingredient to remove extra whitespaces
+                        $ingredientsArray = array_map('trim', $ingredientsArray);
+                            echo '<ul>';
+                            foreach ($ingredientsArray as $ingredient) {
+                                echo '<li>' . $ingredient . '</li>';
+                            }
+                            echo '</ul>';
+                    } else {
+                        echo 'No ingredients available.';
+                    }           
+                 }; 
+                // }
+                    ?>
 
-                <div class="main-recipe">
-                    <img class="main-recipe-img" src="media/food/4_calzone.jpg" alt="Broccoli & Mozzarella Calzones">
-                    <h2 class="main-recipe-name"> Broccoli & Mozzarella Calzones <br><span class="recipe-subtitle">with Caesar Salad</span> </h2>                  
+                    <?php
+                    //   if (isset($_GET['id'])) {
+                        // $recipe_id = $_GET['id'];
+                        $query = "SELECT * FROM Recipes WHERE id = $recipe_id ";
+                        $results = mysqli_query($db_connection, $query);
+                        while ($oneRecipe = mysqli_fetch_array($results)) {
+                            echo '<img src="./media/recipe-ingre/'.$oneRecipe['Ingredients IMG'] . '" " alt="All Ingredients">';
+                        };
+                    // };
+                    ?>
                 </div>
+            </div>
 
-                <div class="main-recipe">
-                    <img class="main-recipe-img" src="media/food/5_alfredo.jpg" alt="Bucatini Alfredo">
-                    <h2 class="main-recipe-name"> Bucatini Alfredo <br><span class="recipe-subtitle">with Broccoli</span> </h2>                  
-                </div>
-                
-                <div class="main-recipe">
-                    <img class="main-recipe-img" src="media/food/6_bucatini.jpg" alt="Bucatini & Tomato Sauce">
-                    <h2 class="main-recipe-name"> Bucatini & Tomato Sauce <br><span class="recipe-subtitle">with Roasted Broccoli</span> </h2>                  
-                </div>
+            <h2> Instructions</h2>
 
-                <div class="main-recipe">
-                    <img class="main-recipe-img" src="media/food/7_rojas.jpg" alt="Cheesy Enchiladas Rojas">
-                    <h2 class="main-recipe-name"> Cheesy Enchiladas Rojas <br><span class="recipe-subtitle">with Mushrooms & Kale</span> </h2>                  
-                </div>
+            <div id="instruct">
 
-                <div class="main-recipe">
-                    <img class="main-recipe-img" src="media/food/8_sandwich.jpg" alt="Crispy Fish Sandwiches">
-                    <h2 class="main-recipe-name"> Crispy Fish Sandwiches <br><span class="recipe-subtitle">with Tartar Sauce & Roasted Sweet Potato Wedges</span> </h2>                  
-                </div>
+                <?php
+                // if (isset($_GET['id'])) {
+                    // $recipe_id = $_GET['id'];
+                    $query = "SELECT * FROM Recipes WHERE id = $recipe_id ";
+                    $results = mysqli_query($db_connection, $query);
+                    while ($oneRecipe = mysqli_fetch_array($results)) {
+        
+                        $originalSteps2 = explode('*', $oneRecipe['All Steps']);
+                        $stepImgsArray = explode("*", $oneRecipe['Step IMGs']);
+                    // echo '<p> Number of steps is' . count($originalSteps2) .' </p>';
+                        for($lp = 0; $lp < count($originalSteps2 ); $lp++) {
+                            $firstChar = substr($originalSteps2[$lp], 0, 1);
+                        
+                            // echo '<p> this is the first character' . $firstChar . '</p>';
+                            if (is_numeric($firstChar)){
+                                echo '<div class="instructStep">';
+                                echo '<div>';
+                                echo '<h3> Step ' . $originalSteps2[$lp] . '</h3>';
+                                echo '<p>' . $originalSteps2[$lp+1] . '</p>';
+                                echo '</div>';
+                                echo '<img class="stepImg" src="./media/recipe-steps/' . $stepImgsArray[$firstChar-1] . '" alt="Dish image">';
+                                echo '</div>';
+                            }
+                        
+                        }
 
-                <div class="main-recipe">
-                    <img class="main-recipe-img" src="media/food/9_chicken.jpg" alt="General Tso's Chicken">
-                    <h2 class="main-recipe-name"> General Tso's Chicken <br><span class="recipe-subtitle">with Bok Choy & Jasmine Rice</span> </h2>                  
-                </div> -->
+                    };
+                ?>
 
             </div>
+            <a class="view-button" id="recipeReturnButton" href=""> Return to Home </a>
         </main>
 
         <footer>
@@ -135,7 +227,6 @@
             <p id="copyright"> © 2023 Kaylie Nguyen </p>
         </footer>
 
-        <script src="script.js"> </script>
     </body>
 
 </html>

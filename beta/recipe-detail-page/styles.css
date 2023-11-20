@@ -284,15 +284,14 @@ footer {
     main {
         margin: 0 3rem;
     }
-    #navbar {
+    /* #navbar {
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 1rem 6rem;
-    }
+    } */
     #logo {
         width: 20%;
-        margin: 0;
     }
     div.search-container {
         margin: 0;
@@ -351,9 +350,9 @@ footer {
     main {
         margin: 0 6rem;
     }
-    #navbar {
+    /* #navbar {
         padding: 2rem 6rem;
-    }
+    } */
     #logo {
         width: 15%;
     }

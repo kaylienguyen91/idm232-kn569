@@ -12,56 +12,6 @@
 
     <body id="recipeDetailPage">
 
-        <?php
-            require_once '../includes/fun.php';
-            consoleMsg("PHP fun is loaded");
-            require_once '../env.php';
-            require_once '../includes/database.php';
-        ?> 
-
-
-        <?php
-        $dsn = 'mysql:host=' . $db_host . ';dbname=' . $db_name;
-    try {
-        $pdo = new PDO($dsn, $db_user, $db_pass);
-    } catch (PDOException $e) {
-        die('Connection failed: ' . $e->getMessage());
-    };
-
-    consoleMsg("dsn worked");
-
-        $recipe_id = $_GET['id'];  // Assuming the ID is passed through the URL
-        $stmt = $pdo->prepare('SELECT * FROM Recipes WHERE id = :recipe_id');
-        $stmt->bindParam(':recipe_id', $recipe_id, PDO::PARAM_INT);
-        $stmt->execute();
-        
-        // Fetch the data
-        $recipe = $stmt->fetch(PDO::FETCH_ASSOC);
-        consoleMsg("fetch asssoc worked");
-    
-        if (isset($_GET['id'])) {
-            // Retrieve recipe data based on ID from the URL
-            $recipe_id = $_GET['id'];
-
-            $stmt = $pdo->prepare('SELECT * FROM Recipes WHERE id = :recipe_id');
-            $stmt->bindParam(':recipe_id', $recipe_id, PDO::PARAM_INT);
-            $stmt->execute();
-        
-            // Fetch the data
-            $oneRecipe = $stmt->fetch(PDO::FETCH_ASSOC);
-        
-            // If a recipe with the specified ID is not found, you might want to handle that case
-            if (!$oneRecipe) {
-                echo "Recipe not found.";
-                // You can redirect the user, show an error message, etc.
-            }
-        };
-        consoleMsg("before null worked");
-    
-        // Close the database connection
-        $pdo = null;
-        ?>
-
         <header>
             <div id="navbar">
                 <img id="logo" src="media/logo.png" alt="Logo">
@@ -75,51 +25,23 @@
                 </div>
             </div>
             
-            <?php
-            echo '<h1 class="main-recipe-name">' . $oneRecipe['Title'] . ' <br><span class="recipePageSubtitle">' . $oneRecipe['Subtitle'] . '</span></h1>';
-            ?>
-            <!-- <h1> Ancho-Orange Chicken <br><span class="recipePageSubtitle">with Kale Rice & Roasted Carrots</span> -->
+            <h1> Ancho-Orange Chicken <br><span class="recipePageSubtitle">with Kale Rice & Roasted Carrots</span> </h1>
             
         </header>
 
         <main>
             <div id="recipeIntro">
-                <?php
-                    echo '<img id="recipeHeroImg" src="./../media/food/'.$oneRecipe['Main IMG'] . '" " alt="Dish image">';
-                ?>
-                <!-- <img id="recipeHeroImg" src="media/food/1_chicken.jpg" alt="Hero image"> -->
+                <img id="recipeHeroImg" src="media/food/1_chicken.jpg" alt="Hero image">
                 <div>
-                    <p id="recipeDesc">  
-                        <?php
-                        echo $oneRecipe['Description'];
-                        ?>
-                    </p>
-
-                    <!-- We’re amping up chicken breasts with a glaze of smoky ancho chile paste and 
+                    <p id="recipeDesc"> We’re amping up chicken breasts with a glaze of smoky ancho chile paste and 
                         fresh orange juice in this recipe. On the side, roasted carrots and lightly creamy, golden 
-                        raisin-studded rice perfectly accent the sweetness of the glaze. -->
+                        raisin-studded rice perfectly accent the sweetness of the glaze. </p>
 
                     <div id="recipeOverview">
-                        <p> <strong>Cook Time:</strong><br> 
-                            <?php 
-                            echo $oneRecipe['Cook Time'];
-                            ?>
-                        </p>
-                        <p> <strong>Servings:</strong><br> 
-                            <?php 
-                            echo $oneRecipe['Servings'];
-                            ?>
-                        </p>
-                        <p> <strong>Cal/Serving:</strong><br> 
-                            <?php 
-                            echo $oneRecipe['Cal/Serving'];
-                            ?>
-                        </p>
-                        <p> <strong>Protein:</strong><br> 
-                            <?php 
-                            echo $oneRecipe['Proteine'];
-                            ?>
-                        </p>
+                        <p> <strong>Cook Time:</strong><br> 45 min</p>
+                        <p> <strong>Servings:</strong><br> 4</p>
+                        <p> <strong>Cal/Serving:</strong><br> 600</p>
+                        <p> <strong>Protein:</strong><br> Chicken</p>
                     </div>
                 </div>
             </div>
@@ -127,30 +49,7 @@
             <div>
                 <h2> Ingredients </h2>
                 <div id="ingredients">
-                    <?php
-                        function keyExists($oneRecipe, $key) {
-                            return isset($oneRecipe[$key]) && !empty($oneRecipe[$key]);
-                        };
-                        if (keyExists($oneRecipe, 'All Ingredients')) {
-                            // Split the ingredients using the asterisk as a delimiter
-                            $ingredientsArray = explode('*', $oneRecipe['All Ingredients']);
-                        
-                            // Trim each ingredient to remove extra whitespaces
-                            $ingredientsArray = array_map('trim', $ingredientsArray);
-                        
-                            // Display the ingredients as list items
-                            // if (!empty($ingredientsArray)) {
-                                echo '<ul>';
-                                foreach ($ingredientsArray as $ingredient) {
-                                    echo '<li>' . $ingredient . '</li>';
-                                }
-                                echo '</ul>';
-                            // }
-                        } else {
-                            echo 'No ingredients available.';
-                        }
-                    ?>
-                    <!-- <ul>
+                    <ul>
                         <li> 4 boneless, skinless chicken breasts</li>
                         <li> 1 lime</li>
                         <li> 1 tbsp Ancho Chile paste</li>
@@ -162,11 +61,8 @@
                         <li> 4 carrots</li>
                         <li> 3 tbsps Golden Raisins</li>
                         <li> 1 orange</li>
-                    </ul> -->
-                    <?php
-                        echo '<img src="./../media/recipe-ingre/'.$oneRecipe['Ingredients IMG'] . '" " alt="All Ingredients">';
-                    ?>
-                    <!-- <img src="media/dish_1/ingredients.webp" alt="Ingredients"> -->
+                    </ul>
+                    <img src="media/dish_1/ingredients.webp" alt="Ingredients">
                 </div>
             </div>
 

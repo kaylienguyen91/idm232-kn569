@@ -10,11 +10,16 @@
     font-family: "nunito-italic";
     src: url('fonts/nunito/Nunito-Italic.ttf') format('truetype');
 }
+@font-face {
+    font-family: "nunito-bold";
+    src: url('fonts/nunito/Nunito-SemiBold.ttf') format('truetype');
+}
 
 :root {
     --josefin-bold: "josefin-bold";
     --nunito-italic: "nunito-italic";
     --nunito-regular: "nunito-regular";
+    --nunito-bold: "nunito-bold";
 }
 
 body {
@@ -113,9 +118,8 @@ main {
     color: white;
 }
 
-a, a:hover, a:focus, a:active, a:visited {
+a {
     text-decoration: none;
-    color: black;
 }
 
 h1 {
@@ -156,6 +160,69 @@ span.recipe-subtitle {
     font-family: var(--nunito-italic);
     line-height: 100%;
     color: #3d9970;
+}
+
+
+/* ///////////////////////////// */
+/* Recipe Detail */
+/* //////////// */
+
+#recipeDetailPage h2 {
+    margin: 3rem auto 1rem auto;
+    font-family: var(--josefin-bold);
+    font-size: 1.8rem;
+    color: #ffae0b;
+}
+
+span.recipePageSubtitle {
+    color: black;
+    font-size: 1.2rem;
+    font-family: var(--nunito-italic);
+    line-height: 100%;
+}
+
+#recipeDesc {
+    max-width: 700px;
+    margin: 2rem auto;
+}
+
+#recipeOverview {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: bisque;
+    border-radius: 1rem;
+    column-gap: 2rem;
+    padding: 0 2rem;
+    max-width: 370px;
+    margin: auto;
+}
+
+div.instructStep {
+    margin-top: 2rem;
+}
+
+img.stepImg, #recipeHeroImg {
+    border-radius: 1rem;
+}
+
+h3 {
+    color: #3d9970;
+    font-size: 1.5rem;
+}
+
+ul {
+    margin: auto;
+}
+
+li {
+    margin-top: .75rem;
+}
+
+#recipeReturnButton {
+    display: block;
+    margin: 3rem auto;
+    width: fit-content;
+
 }
 
 /* /////////////////////// */
@@ -217,15 +284,14 @@ footer {
     main {
         margin: 0 3rem;
     }
-    #navbar {
+    /* #navbar {
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 1rem 6rem;
-    }
+    } */
     #logo {
         width: 20%;
-        margin: 0;
     }
     div.search-container {
         margin: 0;
@@ -242,6 +308,36 @@ footer {
         grid-template-columns: 1fr 1fr;
         column-gap: 2rem;
     }
+    #recipeHeroImg {
+        display: block;
+        max-width: 700px;
+        margin: auto;
+    }
+    #recipeOverview {
+        display: flex;
+        column-gap: 5rem;
+        justify-content: space-evenly;
+        max-width: fit-content;
+    }
+    div.instructStep, #ingredients {
+        display: flex;
+        column-gap: 2rem;
+        align-items: center;
+    }
+    #ingredients {
+        flex-direction: row-reverse;
+        justify-content: space-evenly;
+    }
+    div.instructStep img, #ingredients img {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    div.instructStep {
+        margin-top: 3rem;
+        column-gap: 3rem;
+    }
 }
 
 @media screen and (min-width: 1100px) {
@@ -254,9 +350,9 @@ footer {
     main {
         margin: 0 6rem;
     }
-    #navbar {
+    /* #navbar {
         padding: 2rem 6rem;
-    }
+    } */
     #logo {
         width: 15%;
     }
